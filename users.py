@@ -8,3 +8,5 @@ class User:
     #create account
     def save_account(self):
         User.user_list.append(self)
+    def view_account(self):
+        User.user_list.view(self)
