@@ -5,8 +5,12 @@ class User:
         self.username=username
         self.password=password
     
-    #create account
-    def save_account(self):
+    
+    def save_user(self):
         User.user_list.append(self)
+
+    def delete_user(self):
+        User.user_list.remove(self)
+        
     def view_account(self):
         User.user_list.view(self)
