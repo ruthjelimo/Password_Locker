@@ -11,6 +11,11 @@ class User:
 
     def delete_user(self):
         User.user_list.remove(self)
-        
-    def view_account(self):
-        User.user_list.view(self)
+    
+    @classmethod
+    def find_user(cls, username):
+        for user in cls.user_list:
+            if user.username == username:
+                return  user
+
+
