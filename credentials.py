@@ -16,3 +16,11 @@ def save_credentials(self):
     function to check if the user is saved
     """
       Credentials.credentials_list.append(self)
+
+def delete_credentials(self):
+      """"
+        function to check if the credentials is deleted
+      """     
+
+      Credentials.credentials_list.remove(self)
+   
