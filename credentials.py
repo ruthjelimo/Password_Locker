@@ -2,6 +2,7 @@ class Credentials:
      '''
     class that generates an instance of credentials
     '''
+
      credentials_list=[]
 
 def __init__(self,username,password):

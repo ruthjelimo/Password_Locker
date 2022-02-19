@@ -3,7 +3,7 @@ import unittest
 import pyperclip
 from credentials import Credentials
 
-class TestUser(unittest.TestCase):
+class TestCredentials(unittest.TestCase):
    def setUp(self):
        """
          Test class that defines test cases for the credentials class behaviours.
@@ -34,3 +34,16 @@ class TestUser(unittest.TestCase):
             tearDown method that does clean up after each test case has run.
             '''
           Credentials.credentials_list =[]   
+  
+   def test_save_multiple_credentials(self):
+         '''
+            test_save_multiple_credentials to check if we can save multiple credentials
+            objects to our credentials_list
+            '''
+         self.new_credentials.save_credentials()
+         test_credentials = Credentials("mimo","twin")
+         test_credentials.save_credentials()
+         self.assertEqual(len(Credentials.credential_list),2)
+   
+if __name__ == '__main__':
+    unittest.main()
