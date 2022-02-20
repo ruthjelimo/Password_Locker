@@ -4,15 +4,24 @@ from credential import Credential
 class TestCredentials(unittest.TestCase):
     def setUp(self):
         '''
-        method to run before each test
+        function to run before each test
         '''
-        self.new_credential=Credential("Instagram","mimoh","1234")
+        self.new_credential=Credential("Instagram","mimoh","1234Pa")
     def test_init(self):
+       
+        '''
+           test_init test case to test if the object is initialized properly
+        '''
         self.assertEqual(self.new_credential.account_name, "Instagram")
         self.assertEqual(self.new_credential.username,"mimoh")
-        self.assertEqual(self.new_credential.account_password, "1234")
+        self.assertEqual(self.new_credential.account_password, "1234Pa")
 
     def test_save_credential(self):
+
+        '''
+         test_save_credential test case to test if the credential object is saved into
+         the credential list
+        '''
         self.new_credential.save_credential()
         self.assertEqual( len(Credential.credential_list), 1)
 
@@ -24,7 +33,7 @@ class TestCredentials(unittest.TestCase):
 
     def test_save_multiple_credentials(self):
         self.new_credential.save_credential()
-        test_credential=Credential("Twitter","ruth","cheli")
+        test_credential=Credential("Twitter","ruth","cheliR")
         test_credential.save_credential()
         self.assertEqual( len(Credential.credential_list), 2)
 
@@ -34,7 +43,7 @@ class TestCredentials(unittest.TestCase):
         confirm that credentials  exists
         '''
         self.new_credential.save_credential()
-        test_credential = Credential("Twitter", "ruth","cheli")
+        test_credential = Credential("Twitter", "ruth","cheliR")
         test_credential.save_credential()
         credential_exists = Credential.credential_exists("Twitter")
         self.assertTrue(credential_exists)

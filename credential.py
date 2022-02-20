@@ -1,3 +1,5 @@
+import random
+import string
 class Credential:
 
     '''
@@ -11,17 +13,18 @@ class Credential:
         self.username=username
         self.account_password=account_password
 
-    """"
-    function that defines properties of a class
-    """
+        """"
+           function that defines properties of a class
+        """
 
     def save_credential(self):
-
-        Credential.credential_list.append(self)
+          
+             """"
+             function to check if the credential is saved
+              """
+             Credential.credential_list.append(self)
  
-    """"
-    function to check if the credential is saved
-    """
+ 
     def delete_credentials(self):
         '''
         delete saved credentials in the credentials list
@@ -55,8 +58,6 @@ class Credential:
         new_credential=Credential(account_name,username,password)
         return new_credential
     
-   
-
     @classmethod
     def credential_exists(cls, account_name):
         '''
@@ -74,3 +75,9 @@ class Credential:
         '''
         return cls.credential_list
 
+    def generate_password(self):
+        '''
+        generate random password consisting of letters
+        '''
+        password = string.ascii_uppercase + string.ascii_lowercase
+        return ''.join(random.choice(password) for i in range(1,9))
