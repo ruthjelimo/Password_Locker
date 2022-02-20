@@ -32,7 +32,7 @@ class Credential:
         Credential.credential_list.remove(self)
 
     @classmethod
-    def verify_credential(cls,account_name):
+    def verify_user(cls,account_name):
          """
            method used to verify credentials
          """
@@ -69,7 +69,7 @@ class Credential:
         return False
 
     @classmethod
-    def display_credentials(cls):
+    def display_credential(cls):
         '''
         method that returns credentials
         '''
