@@ -101,6 +101,13 @@ def main():
             elif pass_choice == 'GP':
                 password = input(generate_password(password))
                 break
+            else:
+                print("Invalid password")
+
+        save_user(create_user(username,password))
+        print("*"*60)
+        print(f"Hello {username}, Your account has been created succesfully! Your password is: {password}")
+        print("*"*60) 
 
 if __name__ == '__main__':
      main()
