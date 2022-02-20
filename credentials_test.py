@@ -1,69 +1,49 @@
-#!usr/bin/env python3.8
-import unittest
 import pyperclip
-from credentials import Credentials
-
+import unittest
+from credential import Credential
 class TestCredentials(unittest.TestCase):
-   def setUp(self):
-       """
-         Test class that defines test cases for the credentials class behaviours.
-        """
-   
-   
-       self.new_credentials = Credentials("Talia","12345") 
-      
-   def test_init(self):
+    def setUp(self):
         '''
-        test_init test case to test if the object is initialized properly
+        method to run before each test
         '''
-        self.assertEqual(self.new_user.username,"Talia")
-        self.assertEqual(self.new_user.password,"12345")
+        self.new_credential=Credential("Instagram","mimoh","1234")
+    def test_init(self):
+        self.assertEqual(self.new_credential.account_name, "Instagram")
+        self.assertEqual(self.new_credential.username,"mimoh")
+        self.assertEqual(self.new_credential.account_password, "1234")
 
-    
-   def test_save_credentials(self):
+    def test_save_credential(self):
+        self.new_credential.save_credential()
+        self.assertEqual( len(Credential.credential_list), 1)
+
+    def tearDown(self):
         '''
-         test_save_credentials test case to test if the credential object is saved into
-         the  list
+        clean up after each test to prevent errors
         '''
-        self.new_credentials.save_credentials()
-        self.assertEqual(len(Credentials.credentials_list),1)
+        Credential.credential_list=[]
+
+    def test_save_multiple_credentials(self):
+        self.new_credential.save_credential()
+        test_credential=Credential("Twitter","ruth","cheli")
+        test_credential.save_credential()
+        self.assertEqual( len(Credential.credential_list), 2)
 
 
-   def tearDown(self):
-          '''
-            tearDown method that does clean up after each test case has run.
-            '''
-          Credentials.credentials_list =[]   
-  
-   def test_save_multiple_credentials(self):
-         '''
-            test_save_multiple_credentials to check if we can save multiple credentials
-            objects to our credentials_list
-            '''
-         self.new_credentials.save_credentials()
-         test_credentials = Credentials("mimo","twin")
-         test_credentials.save_credentials()
-         self.assertEqual(len(Credentials.credential_list),2)
-   
-   def  test_delete_credentials(self):
-          '''
-            test_delete_credentials to test if we can remove credentials from our credentials list
-            '''
-          self.new_credentials.save_credentials()
-          test_credentials = Credentials("Talia","1234")
-          test_credentials.save_credentials()
-          self.new_credentials.delete_credentials()
-          self.assertEqual(len(Credentials.credentials_list),1)
-
-   def test_find_credentials(self):
+    def test_confirm_credential_exists(self):
         '''
-        find credentials using username and display information
+        confirm that credentials  exists
         '''
-        self.new_credentials.save_credentials()
-        test_credentials = Credentials("mimo", "twin")
-        test_credentials.save_credentials()
-        found_credentials = Credentials.find_credential("jelimo")
-        self.assertEqual(found_credentials.username, self.new_credentials.username)
+        self.new_credential.save_credential()
+        test_credential = Credential("Twitter", "ruth","cheli")
+        test_credential.save_credential()
+        credential_exists = Credential.credential_exists("Twitter")
+        self.assertTrue(credential_exists)
 
+
+    def test_display_credentials(self):
+        '''
+        test if  credentials can be displayed
+        '''
+        self.assertEqual(Credential.display_credentials(), Credential.credential_list)
 if __name__ == '__main__':
     unittest.main()
