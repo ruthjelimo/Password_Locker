@@ -1,4 +1,4 @@
-#!/usr/bin/envi python3.8
+#!/usr/bin/env python3.8
 import pyperclip
 from users import User
 from credential import Credential
@@ -71,12 +71,6 @@ def verify_credential(cls,account_name):
                  return True
                  return False
 
-# def generate_password(self):
-#         '''
-#         generate random password consisting of letters
-#         '''
-#         password = string.ascii_uppercase + string.ascii_lowercase
-#         return ''.join(random.choice(password) for i in range(1,9))
 
 
 def generate_password(self):
@@ -85,3 +79,28 @@ def generate_password(self):
     '''
     auto_password = Credential.generate_password(self)
     return auto_password
+
+def main():
+ 
+    print("Hello Welcome to PasswordLocker\n To procced enter any of the following...\n cu---  To create acccount \n lg --- login to existing account  \n")
+    short_code = input("").lower().strip()
+    if short_code == 'cu':
+        print("signup")
+        print('*' * 20)
+        print("Username")
+        username = input()
+        print("password")
+        password = ""
+        while True:
+            print(" TP - Type your own pasword?..\n GP - Generate from our random Password")
+            pass_choice = input().strip()
+            if pass_choice == 'TP':
+                password = input("Enter Password\n")
+              
+                break
+            elif pass_choice == 'GP':
+                password = input(generate_password(password))
+                break
+
+if __name__ == '__main__':
+     main()
